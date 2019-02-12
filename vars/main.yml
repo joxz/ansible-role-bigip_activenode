@@ -1,0 +1,10 @@
+---
+# vars file for ansible-role-bigip_activenode
+provider:
+  password: "{{F5_PASSWORD}}"
+  server: "{{F5_SERVER}}"
+  user: "{{F5_USER}}"
+  validate_certs: "{{F5_VALIDATE_CERTS}}"
+  server_port: "{{F5_SERVER_PORT | default(omit)}}"
+  transport: "{{F5_TRANSPORT | default(omit)}}"
+  ssh_keyfile: "{{ANSIBLE_NET_SSH_KEYFILE | default(omit)}}"

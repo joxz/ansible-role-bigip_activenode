@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  role_name: bigip_activenode
+  author: joxz
+  description: Ansible role to determine the primary units in Big-IP clusters
+
+  issue_tracker_url: https://github.com/joxz/ansible-role-bigip_activenode/issues/tracker
+
+  license: MIT
+
+  min_ansible_version: 2.5
+
+  galaxy_tags: 
+    - f5
+    - networking
+    - bigip
+
+dependencies: []

@@ -1,0 +1,35 @@
+---
+
+- name: get active devices
+  bigip_device_facts:
+    gather_subset:
+      - devices
+    provider: "{{provider}}"
+  register: bigip_facts
+
+#- name: debug bigip_facts
+#  debug:
+#    var: bigip_facts
+
+- name: set active cluster device and group
+  add_host:
+    name: "{{item.name | lower}}"
+    group: active_units
+    F5_USER: "{{lookup('vars', 'F5_USER')}}"
+    F5_PASSWORD: "{{lookup('vars', 'F5_PASSWORD')}}"
+    F5_SERVER: "{{item.hostname | lower}}"
+  loop: "{{bigip_facts | json_query(ha_query)}}"
+  vars:
+    ha_query: "devices[*].{name: name, state: failover_state, hostname: hostname}"
+  when: item.state == 'active'
+
+#- name: debug facts
+#  debug:
+#    var: item
+#  loop: "{{bigip_facts | json_query(ha_query)}}"
+#  vars:
+#    ha_query: "devices[*].{name: name, state: failover_state, hostname: hostname}"
+#
+#- name: debug hostvars
+#  debug:
+#    var: hostvars[inventory_hostname]['groups']['active_units']

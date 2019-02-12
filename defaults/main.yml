@@ -1,0 +1,6 @@
+---
+# defaults file for ansible-role-bigip_activenode
+F5_PASSWORD: "passsssssss"
+F5_SERVER: "f5.fqdn.net"
+F5_USER: "admin"
+F5_VALIDATE_CERTS: "no"
